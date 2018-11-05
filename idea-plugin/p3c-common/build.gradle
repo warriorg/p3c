@@ -42,58 +42,58 @@ dependencies {
     compile group: 'org.javassist', name: 'javassist', version: '3.21.0-GA'
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//
+//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                authentication(userName: findProperty('ossrhUsername'), password: findProperty('ossrhPassword'))
+//            }
+//
+//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                authentication(userName: findProperty('ossrhUsername'), password: findProperty('ossrhPassword'))
+//            }
+//
+//            pom.project {
+//                name 'p3c-common'
+//                packaging 'jar'
+//                description 'P3c Idea Plugin Common.'
+//                url 'https://github.com/alibaba/p3c'
+//
+//                scm {
+//                    url 'https://github.com/alibaba/p3c'
+//                    connection 'scm:git:https://git@github.com/alibaba/p3c.git'
+//                }
+//
+//                licenses {
+//                    license {
+//                        name 'The Apache Software License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                        distribution 'repo'
+//                    }
+//                }
+//
+//                developers {
+//                    developer {
+//                        id 'junlie'
+//                        name 'Junlie'
+//                        email 'sean.caikang@gmail.com'
+//                    }
+//                    developer {
+//                        id 'ZengHou'
+//                        name 'ZengHou'
+//                        email 'fengwei1983@gmail.com'
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
 
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: findProperty('ossrhUsername'), password: findProperty('ossrhPassword'))
-            }
-
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: findProperty('ossrhUsername'), password: findProperty('ossrhPassword'))
-            }
-
-            pom.project {
-                name 'p3c-common'
-                packaging 'jar'
-                description 'P3c Idea Plugin Common.'
-                url 'https://github.com/alibaba/p3c'
-
-                scm {
-                    url 'https://github.com/alibaba/p3c'
-                    connection 'scm:git:https://git@github.com/alibaba/p3c.git'
-                }
-
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        distribution 'repo'
-                    }
-                }
-
-                developers {
-                    developer {
-                        id 'junlie'
-                        name 'Junlie'
-                        email 'sean.caikang@gmail.com'
-                    }
-                    developer {
-                        id 'ZengHou'
-                        name 'ZengHou'
-                        email 'fengwei1983@gmail.com'
-                    }
-                }
-            }
-        }
-    }
-}
-
-signing {
-    required {
-        isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives")
-    }
-    sign configurations.archives
-}
+//signing {
+//    required {
+//        isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives")
+//    }
+//    sign configurations.archives
+//}

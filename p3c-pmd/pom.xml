@@ -14,7 +14,7 @@
   <name>p3c-pmd</name>  
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
-    <pmd.version>5.5.2</pmd.version> 
+    <pmd.version>5.5.2</pmd.version>
   </properties>
 
   <description>Alibaba Java Coding Guidelines PMD implementations</description>
@@ -97,8 +97,8 @@
         <artifactId>maven-compiler-plugin</artifactId>  
         <version>3.3</version>  
         <configuration> 
-          <source>1.7</source>  
-          <target>1.7</target>  
+          <source>1.7</source>
+          <target>1.7</target>
           <encoding>UTF-8</encoding> 
         </configuration> 
       </plugin>
