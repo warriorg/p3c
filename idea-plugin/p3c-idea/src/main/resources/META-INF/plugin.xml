@@ -5,6 +5,10 @@
 
     <change-notes>
         <![CDATA[
+           <ul>
+        1.0.1
+         <li>不对有@Table注解的Class进行属性、方法的驼峰命名检查</li>
+        </ul>
           <ul>
         1.0.0
         <li>移除了所有魔数警告</li>
@@ -12,8 +16,8 @@
         </ul>
         ]]>
     </change-notes>
+    <version>1.0.1</version>
     <vendor>dcits</vendor>
-    <version>1.0.0</version>
     <idea-version since-build="141.0"/>
     <depends optional="true">com.intellij.velocity</depends>
     <depends optional="true" config-file="p3c.xml">com.intellij.modules.java</depends>

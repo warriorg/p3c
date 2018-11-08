@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.naming;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import com.alibaba.p3c.pmd.I18nResources;
@@ -34,8 +35,8 @@ import net.sourceforge.pmd.lang.java.ast.*;
 public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
 
     private static final String MESSAGE_KEY_PREFIX = "java.naming.LowerCamelCaseVariableNamingRule.violation.msg";
+    private static final String ANNOTATION_TABLE = "Table";
     private Pattern pattern = Pattern.compile("^[a-z|$][a-z0-9]*([A-Z][a-z0-9]*)*(DO|DTO|VO|DAO)?$");
-    private Pattern packagePattern = Pattern.compile("^[a-z0-9]+(\\.[a-z][a-z0-9]*)*\\.model$");
 
     @Override
     public Object visit(final ASTVariableDeclaratorId node, Object data) {
@@ -56,12 +57,14 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
         // variable naming violate lowerCamelCase
         if (!(pattern.matcher(node.getImage()).matches())) {
             ASTCompilationUnit astCompilationUnit = node.getFirstParentOfType(ASTCompilationUnit.class);
-            if (astCompilationUnit != null && astCompilationUnit.getPackageDeclaration() != null) {
-                String packageName = astCompilationUnit.getPackageDeclaration().getPackageNameImage();
-                if (packagePattern.matcher(packageName).matches()) {
+            List<ASTAnnotation> annotations = astCompilationUnit.findDescendantsOfType(ASTAnnotation.class);
+            for (ASTAnnotation annotation : annotations) {
+                ASTName name = annotation.getFirstDescendantOfType(ASTName.class);
+                if (ANNOTATION_TABLE.equals(name.getImage())) {
                     return super.visit(node, data);
                 }
             }
+
 
             ViolationUtils.addViolationWithPrecisePosition(this, node, data,
                 I18nResources.getMessage(MESSAGE_KEY_PREFIX + ".variable", node.getImage()));
@@ -72,10 +75,11 @@ public class LowerCamelCaseVariableNamingRule extends AbstractAliRule {
     @Override
     public Object visit(ASTMethodDeclarator node, Object data) {
         if (!(pattern.matcher(node.getImage()).matches())) {
-            ASTCompilationUnit astCompilationUnit = node.getFirstParentOfType(ASTCompilationUnit.class);
-            if (astCompilationUnit != null && astCompilationUnit.getPackageDeclaration() != null) {
-                String packageName = astCompilationUnit.getPackageDeclaration().getPackageNameImage();
-                if (packagePattern.matcher(packageName).matches()) {
+           ASTCompilationUnit astCompilationUnit = node.getFirstParentOfType(ASTCompilationUnit.class);
+            List<ASTAnnotation> annotations = astCompilationUnit.findDescendantsOfType(ASTAnnotation.class);
+            for (ASTAnnotation annotation : annotations) {
+                ASTName name = annotation.getFirstDescendantOfType(ASTName.class);
+                if (ANNOTATION_TABLE.equals(name.getImage())) {
                     return super.visit(node, data);
                 }
             }
